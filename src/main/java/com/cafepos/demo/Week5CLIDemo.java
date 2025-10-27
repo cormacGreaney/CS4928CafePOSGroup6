@@ -33,6 +33,7 @@ public final class Week5CLIDemo {
             System.out.println("3. Pay Order");
             System.out.println("4. Mark Ready");
             System.out.println("5. Save & View Receipt");
+            System.out.println("6. Remove Most Recent Item");
             System.out.println("0. Exit");
             System.out.print("Select option: ");
             String input = scanner.nextLine().trim();
@@ -107,6 +108,14 @@ public final class Week5CLIDemo {
 
                 case "5" -> {
                     printReceipt(order, taxPct, paid);
+                }
+
+                case "6" -> {
+                    if (order.items().isEmpty()) {
+                        System.out.println("Cannot remove: order is empty.");
+                        break;
+                    }
+                    order.removeItem();
                 }
 
                 case "0" -> {

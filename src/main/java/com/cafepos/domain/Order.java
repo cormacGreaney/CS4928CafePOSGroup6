@@ -47,6 +47,14 @@ public final class Order implements OrderPublisher {
         notifyObservers(this, "itemAdded");
     }
 
+    public void removeItem() {
+        if (items.isEmpty()) {
+            throw new IllegalStateException("No items to remove");
+        }
+        items.removeLast();
+        notifyObservers(this, "itemRemoved");
+    }
+
     public Money subtotal() {
         return items.stream()
                 .map(LineItem::lineTotal)
