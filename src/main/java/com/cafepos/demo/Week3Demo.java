@@ -21,14 +21,14 @@ public final class Week3Demo {
         order1.addItem(new LineItem(catalog.findById("P-ESP").orElseThrow(), 2));
         order1.addItem(new LineItem(catalog.findById("P-CCK").orElseThrow(), 1));
         System.out.println("Order #" + order1.id() + " Total: " +
-                order1.totalWithTax(10));
+                order1.totalWithTax());
         order1.pay(new CashPayment());
         // Card payment
         Order order2 = new Order(OrderIds.next());
         order2.addItem(new LineItem(catalog.findById("P-ESP").orElseThrow(), 2));
         order2.addItem(new LineItem(catalog.findById("P-CCK").orElseThrow(), 1));
         System.out.println("Order #" + order2.id() + " Total: " +
-                order2.totalWithTax(10));
+                order2.totalWithTax());
         order2.pay(new CardPayment("4319567812341234"));
     }
 }

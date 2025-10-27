@@ -69,7 +69,7 @@ public final class Week4CLIDemo {
                 case "2" -> {
                     System.out.println("Subtotal: " + order.subtotal());
                     System.out.println("Tax (" + taxPct + "%): " + order.taxAtPercent(taxPct));
-                    System.out.println("Total: " + order.totalWithTax(taxPct));
+                    System.out.println("Total: " + order.totalWithTax());
                 }
                 case "3" -> {
                     System.out.println("\nSelect payment method:");

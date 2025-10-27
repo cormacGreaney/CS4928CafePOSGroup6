@@ -24,6 +24,6 @@ public final class Week5Demo {
 
         System.out.println("Subtotal: " + order.subtotal());
         System.out.println("Tax (10%): " + order.taxAtPercent(10));
-        System.out.println("Total: " + order.totalWithTax(10));
+        System.out.println("Total: " + order.totalWithTax());
     }
 }

@@ -68,7 +68,7 @@ public class Week5Tests {
         o2.addItem(new LineItem(viaManual, 1));
 
         assertEquals(o1.subtotal(), o2.subtotal());
-        assertEquals(o1.totalWithTax(10), o2.totalWithTax(10));
+        assertEquals(o1.totalWithTax(), o2.totalWithTax());
     }
 
     @Test

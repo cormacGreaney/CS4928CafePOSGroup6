@@ -19,7 +19,7 @@ public class OrderTotalsTests {
 
         assertEquals(Money.of(8.50), o.subtotal());
         assertEquals(Money.of(0.85), o.taxAtPercent(10));
-        assertEquals(Money.of(9.35), o.totalWithTax(10));
+        assertEquals(Money.of(9.35), o.totalWithTax());
     }
 
     @Test
