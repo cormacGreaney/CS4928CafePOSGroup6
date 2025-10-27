@@ -128,7 +128,7 @@ public final class Week5CLIDemo {
         }
         System.out.println("Subtotal: " + order.subtotal());
         System.out.println("Tax (" + taxPct + "%): " + order.taxAtPercent(taxPct));
-        System.out.println("Total: " + order.totalWithTax(taxPct));
+        System.out.println("Total: " + order.totalWithTax());
     }
 
     private static void printReceipt(Order order, int taxPct, boolean paid) {
@@ -142,7 +142,7 @@ public final class Week5CLIDemo {
         System.out.println("--------------------------------");
         System.out.println("Subtotal: " + order.subtotal());
         System.out.println("Tax (" + taxPct + "%): " + order.taxAtPercent(taxPct));
-        System.out.println("TOTAL: " + order.totalWithTax(taxPct));
+        System.out.println("TOTAL: " + order.totalWithTax());
         System.out.println("--------------------------------");
         if (paid) {
             System.out.println("Payment: ✅ Received");

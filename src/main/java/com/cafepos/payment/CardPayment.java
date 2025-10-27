@@ -16,6 +16,6 @@ public final class CardPayment implements PaymentStrategy {
     public void pay(Order order) {
         String masked = "****" + cardNumber.substring(cardNumber.length() - 4);
         System.out.println("[Card] Customer paid " +
-                order.totalWithTax(10) + " EUR with card " + masked);
+                order.totalWithTax() + " EUR with card " + masked);
     }
 }

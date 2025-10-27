@@ -55,12 +55,12 @@ public final class Order implements OrderPublisher {
 
     public Money taxAtPercent(int percent) {
         if (percent < 0) throw new IllegalArgumentException("percent must be >= 0");
-        Money tax = subtotal().multiply(percent).multiply(1).divide(100);
-        return tax;
+        return subtotal().multiply(percent).multiply(1).divide(100);
     }
 
-    public Money totalWithTax(int percent) {
-        return subtotal().add(taxAtPercent(percent));
+    public Money totalWithTax() {
+        int taxRate = 10;
+        return subtotal().add(taxAtPercent(taxRate));
     }
 
     public void pay(PaymentStrategy strategy) {
