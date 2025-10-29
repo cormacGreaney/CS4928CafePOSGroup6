@@ -8,6 +8,9 @@ import com.cafepos.domain.LineItem;
 import com.cafepos.domain.Order;
 import com.cafepos.common.OrderIds;
 import com.cafepos.factory.ProductFactory;
+import com.cafepos.observer.CustomerNotifier;
+import com.cafepos.observer.DeliveryDesk;
+import com.cafepos.observer.KitchenDisplay;
 import com.cafepos.payment.CashPayment;
 import com.cafepos.payment.CardPayment;
 import com.cafepos.payment.PaymentStrategy;
@@ -26,6 +29,10 @@ public final class Week6CLIDemo {
 
         ProductFactory factory = new ProductFactory();
         Order order = new Order(OrderIds.next());
+
+        order.register(new KitchenDisplay());
+        order.register(new DeliveryDesk());
+        order.register(new CustomerNotifier());
 
         DiscountPolicy discount = new NoDiscount();
         TaxPolicy tax = new FixedRateTaxPolicy(10);
