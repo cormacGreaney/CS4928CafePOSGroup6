@@ -8,13 +8,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class Week6PolicyTests {
 
     @Test void loyalty_discount_5_percent() {
-        DiscountPolicy d = new LoyaltyPercentDiscount(5);
-        assertEquals(Money.of(0.39), d.discountOf(Money.of(7.80)));
+        // Test old interface - LoyaltyPercentDiscount implements new interface, so we test via adapter
+        PricingService.DiscountPolicy newD = new LoyaltyPercentDiscount(5);
+        Money discount = newD.calculateDiscount(Money.of(7.80));
+        assertEquals(Money.of(0.39), discount);
     }
 
     @Test void fixed_rate_tax_10_percent() {
-        TaxPolicy t = new FixedRateTaxPolicy(10);
-        assertEquals(Money.of(0.74), t.taxOn(Money.of(7.41)));
+        // Test new interface - FixedRateTaxPolicy implements PricingService.TaxPolicy
+        PricingService.TaxPolicy t = new FixedRateTaxPolicy(10);
+        assertEquals(Money.of(0.74), t.calculateTax(Money.of(7.41)));
     }
 
     @Test void pricing_pipeline() {

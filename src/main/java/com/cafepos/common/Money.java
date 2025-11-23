@@ -84,8 +84,4 @@ public final class Money implements Comparable<Money> {
     public String toString() {
         return amount.setScale(2, ROUND).toPlainString();
     }
-
-    public BigDecimal asBigDecimal() {
-        return amount;
-    }
 }

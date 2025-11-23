@@ -34,8 +34,8 @@ public final class Week6CLIDemo {
         order.register(new DeliveryDesk());
         order.register(new CustomerNotifier());
 
-        DiscountPolicy discount = new NoDiscount();
-        TaxPolicy tax = new FixedRateTaxPolicy(10);
+        PricingService.DiscountPolicy discount = new DiscountPolicyAdapter(new NoDiscount());
+        PricingService.TaxPolicy tax = new FixedRateTaxPolicy(10);
         PaymentStrategy payment = new CashPayment();
         ReceiptPrinter printer = new ReceiptPrinter();
 
@@ -61,7 +61,7 @@ public final class Week6CLIDemo {
                 case "6" -> {
                     checkout(order, discount, tax, printer, payment);
                     order = new Order(OrderIds.next());
-                    discount = new NoDiscount();
+                    discount = new DiscountPolicyAdapter(new NoDiscount());
                     payment = new CashPayment();
                 }
                 case "7" -> running = false;
@@ -113,7 +113,7 @@ public final class Week6CLIDemo {
         }
     }
 
-    private static DiscountPolicy chooseDiscount() {
+    private static PricingService.DiscountPolicy chooseDiscount() {
         System.out.println("\nChoose discount:");
         System.out.println("1) None");
         System.out.println("2) Loyalty 5%");
@@ -121,8 +121,8 @@ public final class Week6CLIDemo {
         System.out.print("Select: ");
         return switch (sc.nextLine().trim()) {
             case "2" -> new LoyaltyPercentDiscount(5);
-            case "3" -> new FixedCouponDiscount(Money.of(1.00));
-            default -> new NoDiscount();
+            case "3" -> new DiscountPolicyAdapter(new FixedCouponDiscount(Money.of(1.00)));
+            default -> new DiscountPolicyAdapter(new NoDiscount());
         };
     }
 
@@ -140,8 +140,8 @@ public final class Week6CLIDemo {
     }
 
     private static void checkout(Order order,
-                                 DiscountPolicy discount,
-                                 TaxPolicy tax,
+                                 PricingService.DiscountPolicy discount,
+                                 PricingService.TaxPolicy tax,
                                  ReceiptPrinter printer,
                                  PaymentStrategy payment) {
 
