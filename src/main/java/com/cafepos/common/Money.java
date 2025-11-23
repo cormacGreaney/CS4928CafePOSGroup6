@@ -34,6 +34,15 @@ public final class Money implements Comparable<Money> {
         return new Money(this.amount.add(other.amount));
     }
 
+    public Money subtract(Money other) {
+        if (other == null) throw new IllegalArgumentException("other required");
+        BigDecimal result = this.amount.subtract(other.amount);
+        if (result.compareTo(BigDecimal.ZERO) < 0) {
+            throw new IllegalArgumentException("result cannot be negative");
+        }
+        return new Money(result);
+    }
+
     public Money multiply(int qty) {
         if (qty < 0) throw new IllegalArgumentException("qty must be >= 0");
         return new Money(this.amount.multiply(BigDecimal.valueOf(qty)));
@@ -47,6 +56,10 @@ public final class Money implements Comparable<Money> {
     public Money divide(int divisor) {
         if (divisor <= 0) throw new IllegalArgumentException("divisor must be > 0");
         return new Money(this.amount.divide(BigDecimal.valueOf(divisor), 2, ROUND));
+    }
+
+    public BigDecimal asBigDecimal() {
+        return amount;
     }
 
     @Override

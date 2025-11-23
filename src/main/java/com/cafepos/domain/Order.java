@@ -19,7 +19,13 @@ public final class Order implements OrderPublisher {
 
     public long id() { return id; }
 
-    public List<LineItem> items() { return items; }
+    public List<LineItem> items() { return List.copyOf(items); }
+
+    public void removeLastItem() {
+        if (!items.isEmpty()) {
+            items.remove(items.size() - 1);
+        }
+    }
 
     @Override
     public void register(OrderObserver o) {

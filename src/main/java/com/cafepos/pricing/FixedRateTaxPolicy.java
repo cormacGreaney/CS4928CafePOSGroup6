@@ -1,21 +1,25 @@
 package com.cafepos.pricing;
 
 import com.cafepos.common.Money;
-
 import java.math.BigDecimal;
 
-public final class FixedRateTaxPolicy implements TaxPolicy {
+public final class FixedRateTaxPolicy implements PricingService.TaxPolicy {
     private final int percent;
+
     public FixedRateTaxPolicy(int percent) {
-        if (percent < 0) throw new IllegalArgumentException("percent >= 0 required");
+        if (percent < 0) {
+            throw new IllegalArgumentException("percent must be >= 0");
+        }
         this.percent = percent;
     }
-    public int percent() { return percent; }
 
-    @Override public Money taxOn(Money amount) {
-        BigDecimal t = amount.asBigDecimal()
+    @Override
+    public Money calculateTax(Money subtotal) {
+        if (percent == 0) return Money.zero();
+        BigDecimal taxAmount = subtotal.asBigDecimal()
                 .multiply(BigDecimal.valueOf(percent))
                 .divide(BigDecimal.valueOf(100));
-        return Money.of(t);
+        return Money.of(taxAmount);
     }
 }
+
