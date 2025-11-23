@@ -1,6 +1,5 @@
 package com.cafepos.demo;
 
-import com.cafepos.common.Money;
 import com.cafepos.common.OrderIds;
 import com.cafepos.domain.*;
 import com.cafepos.factory.ProductFactory;

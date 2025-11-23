@@ -4,7 +4,6 @@ import com.cafepos.catalog.SimpleProduct;
 import com.cafepos.common.Money;
 import com.cafepos.domain.LineItem;
 import com.cafepos.domain.Order;
-import com.cafepos.observer.OrderObserver;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
